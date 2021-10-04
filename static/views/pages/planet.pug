@@ -1,0 +1,36 @@
+extends ../layout
+
+block prepend styles
+  link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+  div(class='breadcrumb')
+    li= title
+  form(id='planet-add-form' name='planet-add-form' class='form-inline' action='')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Name
+      div(class='col-md-9')
+        input(id='name' name='name' value='' class='form-control')
+
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Weight
+      div(class='col-md-9')
+        input(id='weight' name='weight' value='' class='form-control')
+
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Storage
+      div(class='col-md-9')
+        input(id='storage' name='storage' value='' class='form-control')
+
+    div(class='form-group')
+      div(class='col-md-12')
+        button(type='submit' class='control-button btn btn-primary') Create
+    div.list-wrapper
+      table(id='planet-list')
+block append scripts
+  script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+  script(src='/static/js/models/Planet.js')
+  script(type='module' src='/static/js/views/planet.js')
