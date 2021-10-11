@@ -54,6 +54,16 @@ class BaseModel {// eslint-disable-line no-unused-vars
   FindIndexById (id) {
     return this.Select().findIndex(item => item.id === id)
   }
+
+  /**
+   *
+   * (element => boolean) predicate
+   * @returns {boolean}
+   */
+  IsThere(predicate) {
+    return this.Select().some(predicate);
+  }
+
   Create (row) {
     const collection = this.Select();
     const entry = this.GetEmpty();

@@ -18,6 +18,9 @@ app.get('/', function (request, response) {
 app.get('/planet', function (request, response) {
   response.render('pages/planet', { title: 'Planet' })
 })
+app.get('/station', function (request, response) {
+  response.render('pages/station', { title: 'Station' })
+})
 
 // запускаємо аплікацію
 app.listen(process.env.PORT || 8080)

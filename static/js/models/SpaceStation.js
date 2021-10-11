@@ -1,27 +1,41 @@
-class SpaceStation {
-  constructor(id, capacity, isAvailable) {
-    this.id = id;
-    this.capacity = capacity;
-    this.isAvailable = isAvailable;
+class SpaceStation extends BaseModel {
+  constructor() {
+    super('stations');
+
+    this.fields = this.fields.concat('number', 'storage', 'isAvailable', 'planetLocation');
   }
 
-  toString() {
-    return `Station #${this.id}, with a capacity of ${this.capacity} cargo items, currently
-     ${this.isAvailable ? 'available' : 'not available'}`;
-  }
-}
+  Create (data) {
+    const hasTheSameNumber = this.IsThere(planet => planet.number === data.number);
+    if (hasTheSameNumber) {
+      throw new Error('Station with the same number already exists!');
+    }
 
-class OrbitStation extends SpaceStation {
-  constructor(id, capacity, isAvailable, planet) {
-    super(id, capacity, isAvailable);
-    this.planet = planet;
+    if (data.planetLocation !== '-') {
+      const planets = new Planet();
+
+      if(!planets.IsThere(planet => planet.name === data.planetLocation)) {
+        throw new Error('Planet with such name does not exist!');
+      }
+    }
+
+    super.Create(data);
   }
 
-  toString() {
-    return super.toString() + `\nIt is located at the orbit of planet ${this.planet.name}`;
-  }
-}
+  Update (id, data) {
+    const hasTheSameNumber = this.IsThere(planet => planet.number === data.number && planet.id !== id);
+    if (hasTheSameNumber) {
+      throw new Error('Station with the same number already exists!');
+    }
 
-module.exports = {
-  SpaceStation, OrbitStation
+    if (data.planetLocation !== '-') {
+      const planets = new Planet();
+
+      if(!planets.IsThere(planet => planet.name === data.planetLocation)) {
+        throw new Error('Planet with such name does not exist!');
+      }
+    }
+
+    super.Update(id, data);
+  }
 }

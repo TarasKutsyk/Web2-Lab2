@@ -1,0 +1,41 @@
+extends ../layout
+
+block prepend styles
+    link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+    div(class='breadcrumb')
+        li= title
+    form(id='station-add-form' name='station-add-form' class='form-inline' action='')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='number') Number
+            div(class='col-md-9')
+                input(id='number' name='number' value='' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='storage') Storage
+            div(class='col-md-9')
+                input(id='storage' name='storage' value='' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='isAvailable') Is Available
+            div(class='col-md-9')
+                input(id='isAvailable' name='isAvailable' value='True' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='planetLocation') Planet
+            div(class='col-md-9')
+                input(id='planetLocation' name='planetLocation' value='-' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-12')
+                button(type='submit' class='control-button btn btn-primary') Create
+        div.list-wrapper
+            table(id='station-list')
+block append scripts
+    script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+    script(type='module' src='/static/js/views/station.js')
