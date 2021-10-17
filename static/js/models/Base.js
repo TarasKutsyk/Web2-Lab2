@@ -48,6 +48,28 @@ class BaseModel {// eslint-disable-line no-unused-vars
     return this.Select().find(item => item.id === id)
   }
   /**
+   *
+   * (element => boolean) predicate
+   * @returns {Planet|undefined}
+   */
+  FindByPredicate(predicate) {
+    return this.Select().find(predicate);
+  }
+  /**
+   *
+   * (element => boolean) predicate
+   * @returns {Number}
+   */
+  CountByPredicate(predicate) {
+    return this.Select().reduce((counter, current) => {
+      if (predicate(current)) {
+        counter++
+      }
+
+      return counter;
+    }, 0)
+  }
+  /**
    * @param {Number} id
    * @returns {Number}
    */

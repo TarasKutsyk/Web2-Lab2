@@ -2,7 +2,7 @@ class SpaceStation extends BaseModel {
   constructor() {
     super('stations');
 
-    this.fields = this.fields.concat('number', 'storage', 'isAvailable', 'planetLocation');
+    this.fields = this.fields.concat('number', 'storage', 'need', 'planetLocation');
   }
 
   Create (data) {

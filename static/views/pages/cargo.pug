@@ -1,0 +1,47 @@
+extends ../layout
+
+block prepend styles
+    link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+    div(class='breadcrumb')
+        li= title
+    form(id='cargo-add-form' name='cargo-add-form' class='form-inline' action='')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='code') Code
+            div(class='col-md-9')
+                input(id='code' name='code' value='' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='name') Name
+            div(class='col-md-9')
+                input(id='name' name='name' value='' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='weight') Weight
+            div(class='col-md-9')
+                input(id='weight' name='weight' value='' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='planetDestination') To planet:
+            div(class='col-md-9')
+                input(id='planetDestination' name='planetDestination' value='-' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='stationDestination') To station:
+            div(class='col-md-9')
+                input(id='stationDestination' name='stationDestination' value='-' class='form-control')
+
+        div(class='form-group')
+            div(class='col-md-12')
+                button(type='submit' class='control-button btn btn-primary') Create
+        div.list-wrapper
+            table(id='cargoes-list')
+block append scripts
+    script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+    script(type='module' src='/static/js/views/cargo.js')
